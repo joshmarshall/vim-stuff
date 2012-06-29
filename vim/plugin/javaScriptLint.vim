@@ -1,0 +1,1 @@
+/home/jmarshall/Projects/javaScriptLint.vim/plugin/javaScriptLint.vim
