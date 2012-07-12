@@ -56,9 +56,11 @@ au FileType markdown set tabstop=4
 au FileType markdown set shiftwidth=4
 
 au BufNewFile,BufRead *.cpp,*.c,*.h,*.hpp set nowrap
-au BufNewFile,BufRead *.cpp,*.c,*.h,*.hpp set colorcolumn=100
+au BufNewFile,BufRead *.cpp,*.c,*.h,*.hpp set colorcolumn=90
+au BufNewFile,BufRead *.cpp,*.c,*.h,*.hpp set tabstop=4
+au BufNewFile,BufRead *.cpp,*.c,*.h,*.hpp set shiftwidth=4
 
-au BufNewFile,BufRead *.ejs set filetype=html
+au BufNewFile,BufRead *.ejs,*.htm,*.html set filetype=html
 au BufNewFile,BufRead *.less set filetype=less
 au BufNewFile,BufRead *.j set filetype=objj
 au BufNewFile,BufRead *.dart set filetype=dart
