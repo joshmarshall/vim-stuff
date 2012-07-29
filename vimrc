@@ -1,4 +1,4 @@
-syntax enable
+syntax on
 filetype on
 filetype plugin on
 filetype indent on
@@ -73,7 +73,6 @@ au FileType puppet set shiftwidth=4
 
 au BufRead,BufNewFile *.coffee set filetype=coffee
 autocmd FileType coffee compiler espresso
-"autocmd FileType python compiler pylint
 
 au BufRead,BufNewFile *.frag,*.vert,*.glsl setf glsl
 
