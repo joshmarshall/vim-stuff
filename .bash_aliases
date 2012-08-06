@@ -11,3 +11,4 @@ if [[ $HOST == josh-* ]] || [[ $HOST == jm-* ]]; then
     HOST="⌨ "
 fi;
 export PS1="\[\033[32m\]$USER$HOST\[\033[01;34m\] \W\[\033[31m\]\$(__git_ps1)\[\033[00m\] ⚡\[\033[00m\] "
+source ~/.bash_secure

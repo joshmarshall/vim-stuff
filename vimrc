@@ -77,3 +77,12 @@ autocmd FileType coffee compiler espresso
 au BufRead,BufNewFile *.frag,*.vert,*.glsl setf glsl
 
 highlight SpellBad ctermbg=DarkGray
+
+"laziness ftw
+map <CR> O<Esc>
+
+"stop it, josh
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
