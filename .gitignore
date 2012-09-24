@@ -3,3 +3,7 @@
 *.pyc
 *.pyo
 vim/.netrwhist
+xmonad/xmonad.errors
+xmonad/xmonad.hi
+xmonad/xmonad.o
+xmonad/xmonad-*
