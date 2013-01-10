@@ -25,6 +25,20 @@ function run {
   fi
 }
 
+function confirm {
+  echo -n $1
+  read confirmation
+  default=$2
+  if [[ $confirmation == "" ]]; then
+    confirmation=$default
+  fi
+  confirmation=$(echo $confirmation | tr '[:lower:]' '[:upper:]')
+  if [[ $confirmation == YES ]]; then
+    return 1
+  fi
+  return 0
+}
+
 link "$DIR/vimrc" ~/.vimrc
 link "$DIR/vimrc" ~/.vimrc
 link "$DIR/vim" ~/.vim
@@ -37,22 +51,20 @@ distroid=`lsb_release -i`
 distro=`expr substr "$distroid" 17 6`
 
 if [[ $distro == "Ubuntu" ]]; then
-  echo "Installing Ubuntu packages..."
-  run sudo apt-get update
-  run sudo apt-get install -y build-essential python-setuptools
-  run sudo apt-get install -y xmonad xmobar suckless-tools gmrun xloadimage > /dev/null
-  run sudo easy_install pip
+  confirm "Install system packages? (default YES): " "YES"
+  if [[ $? == 1 ]]; then
+    echo "Installing Ubuntu packages..."
+    run sudo apt-get update
+    run sudo apt-get install -y build-essential python-setuptools
+    run sudo apt-get install -y xmonad xmobar suckless-tools gmrun xloadimage > /dev/null
+    run sudo easy_install pip
+  fi
 fi
 
 touch ~/.bash_secure
 chmod 700 ~/.bash_secure
 
-echo -n "Setup terminal colors? (YES to continue) "
-read confirmation
-if [[ $confirmation == "" ]]; then
-  confirmation="YES"
-fi
-confirmation=$(echo $confirmation | tr '[:lower:]' '[:upper:]')
-if [[ $confirmation == YES ]]; then
+confirm "Setup terminal colors? (default YES): " "YES"
+if [[ $? == 1 ]]; then
   ./gnome-terminal-zenburn.sh
 fi
