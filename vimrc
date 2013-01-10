@@ -74,6 +74,9 @@ au FileType puppet set shiftwidth=4
 au BufRead,BufNewFile *.coffee set filetype=coffee
 autocmd FileType coffee compiler espresso
 
+"pago screenplay format
+au BufRead,BufNewFile *.pago set filetype=pago
+
 au BufRead,BufNewFile *.frag,*.vert,*.glsl setf glsl
 
 highlight SpellBad ctermbg=DarkGray
