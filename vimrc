@@ -16,6 +16,7 @@ match ExtraWhitespace /\s\+$/
 "set paste paste
 "let python_highlight_all=1
 
+au BufRead,BufNewFile *.erb set filetype=ruby
 au FileType ruby set tabstop=2
 au FileType ruby set shiftwidth=2
 
