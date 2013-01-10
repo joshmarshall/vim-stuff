@@ -42,7 +42,7 @@ function confirm {
 link "$DIR/vimrc" ~/.vimrc
 link "$DIR/vimrc" ~/.vimrc
 link "$DIR/vim" ~/.vim
-link "$DIR/.bash_aliases" ~/.bash_aliases
+link "$DIR/bash_aliases" ~/.bash_aliases
 link "$DIR/xmonad" ~/.xmonad
 link "$DIR/xmobarrc" ~/.xmobarrc
 link "$DIR/background.jpg" ~/.background.jpg
