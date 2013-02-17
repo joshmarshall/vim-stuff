@@ -5,7 +5,7 @@
 " Last Modified: July 27, 2012
 
 if !exists("pep8_command")
-  let pep8_command = 'pep8 --repeat'
+  let pep8_command = 'pep8 --repeat --ignore=E126'
 endif
 
 " set up auto commands

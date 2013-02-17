@@ -14,20 +14,20 @@ declare -a visnames
 profiles=($(gconftool-2 -R $gconfdir | grep $gconfdir | cut -d/ -f5 |  cut -d: -f1))
 
 #get visible names
-for index in  ${!profiles[@]}; 
-do    
+for index in  ${!profiles[@]};
+do
     visnames[$index]=$(gconftool-2 -g $gconfdir/${profiles[$index]}/visible_name);
 done
 echo "Please select a Gnome Terminal profile:"
 IFS=','
 names="${visnames[*]}"
-select profile_name in $names; 
-do 
+select profile_name in $names;
+do
   if [[ -z $profile_name ]]; then
     echo -e "ERROR: Invalid selection -- ABORTING!\n"
     exit 1
   fi
-  break; 
+  break;
 done
 profile_key=$(expr ${REPLY} - 1)
 unset IFS

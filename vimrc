@@ -2,7 +2,6 @@ syntax on
 filetype on
 filetype plugin on
 filetype indent on
-set mouse=a
 set expandtab
 set autoindent
 set showmatch
@@ -16,6 +15,7 @@ match ExtraWhitespace /\s\+$/
 "set paste paste
 "let python_highlight_all=1
 
+au BufRead,BufNewFile *.erb set filetype=ruby
 au FileType ruby set tabstop=2
 au FileType ruby set shiftwidth=2
 
@@ -74,6 +74,9 @@ au FileType puppet set shiftwidth=4
 
 au BufRead,BufNewFile *.coffee set filetype=coffee
 autocmd FileType coffee compiler espresso
+
+"pago screenplay format
+au BufRead,BufNewFile *.pago set filetype=pago
 
 au BufRead,BufNewFile *.frag,*.vert,*.glsl setf glsl
 
