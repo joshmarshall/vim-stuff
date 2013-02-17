@@ -4,6 +4,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
+import XMonad.Hooks.EwmhDesktops
 import System.IO
 import qualified Data.Map as M
 
@@ -16,8 +17,9 @@ myWorkspaces = ["web", "code", "chat", "vm"] ++ map show [5..8] ++ ["music"]
 
 main = do
     xmproc <- spawnPipe "xmobar /home/jmarshall/.xmobarrc"
-    xmonad $ defaultConfig {
+    xmonad $ ewmh defaultConfig {
         manageHook = manageDocks <+> manageHook defaultConfig
+        , handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook
         , workspaces = myWorkspaces
         , layoutHook = avoidStruts $ layoutHook defaultConfig
         , logHook = dynamicLogWithPP xmobarPP

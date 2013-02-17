@@ -2,7 +2,6 @@ syntax on
 filetype on
 filetype plugin on
 filetype indent on
-set mouse=a
 set expandtab
 set autoindent
 set showmatch
@@ -33,8 +32,8 @@ au FileType xml set shiftwidth=2
 au FileType cs set tabstop=2
 au FileType cs set shiftwidth=2
 
-au FileType css,less set tabstop=2
-au FileType css,less set shiftwidth=2
+au FileType css,less,scss set tabstop=2
+au FileType css,less,scss set shiftwidth=2
 
 au FileType python set tabstop=4
 au FileType python set shiftwidth=4
