@@ -20,6 +20,7 @@ main = do
     xmonad $ ewmh defaultConfig {
         manageHook = manageDocks <+> manageHook defaultConfig
         , handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook
+        , focusFollowsMouse = False
         , workspaces = myWorkspaces
         , layoutHook = avoidStruts $ layoutHook defaultConfig
         , logHook = dynamicLogWithPP xmobarPP

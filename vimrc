@@ -50,8 +50,9 @@ au FileType actionscript set colorcolumn=100
 au FileType actionscript set tabstop=4
 au FileType actionscript set shiftwidth=4
 
+au FileType markdown set wrap
 au FileType markdown set linebreak
-au FileType markdown set colorcolumn=0
+au FileType markdown set nolist
 au FileType markdown set tabstop=4
 au FileType markdown set shiftwidth=4
 
