@@ -18,6 +18,7 @@ main = do
     xmproc <- spawnPipe "xmobar /home/jmarshall/.xmobarrc"
     xmonad $ defaultConfig {
         manageHook = manageDocks <+> manageHook defaultConfig
+        , focusFollowsMouse = False
         , workspaces = myWorkspaces
         , layoutHook = avoidStruts $ layoutHook defaultConfig
         , logHook = dynamicLogWithPP xmobarPP
