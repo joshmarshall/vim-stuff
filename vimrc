@@ -12,8 +12,6 @@ set background=dark
 highlight ExtraWhitespace ctermbg=DarkGray
 match ExtraWhitespace /\s\+\%#\@<!$/
 match ExtraWhitespace /\s\+$/
-"set paste paste
-"let python_highlight_all=1
 
 au BufRead,BufNewFile *.erb set filetype=ruby
 au FileType ruby set tabstop=2
@@ -35,11 +33,6 @@ au FileType cs set shiftwidth=2
 au FileType css,less,scss set tabstop=2
 au FileType css,less,scss set shiftwidth=2
 
-au FileType python set tabstop=4
-au FileType python set shiftwidth=4
-au FileType python set textwidth=79
-au FileType python set colorcolumn=80
-
 au BufRead,BufNewFile *.java set filetype=java
 au FileType java set nowrap
 au FileType java set colorcolumn=100
@@ -57,7 +50,7 @@ au FileType markdown set tabstop=4
 au FileType markdown set shiftwidth=4
 
 au BufNewFile,BufRead *.cpp,*.c,*.h,*.hpp set nowrap
-au BufNewFile,BufRead *.cpp,*.c,*.h,*.hpp set colorcolumn=90
+au BufNewFile,BufRead *.cpp,*.c,*.h,*.hpp set colorcolumn=120
 au BufNewFile,BufRead *.cpp,*.c,*.h,*.hpp set tabstop=4
 au BufNewFile,BufRead *.cpp,*.c,*.h,*.hpp set shiftwidth=4
 
@@ -78,15 +71,20 @@ autocmd FileType coffee compiler espresso
 "pago screenplay format
 au BufRead,BufNewFile *.pago set filetype=pago
 
+"opengl stuff
 au BufRead,BufNewFile *.frag,*.vert,*.glsl setf glsl
 
 highlight SpellBad ctermbg=DarkGray
-
-"laziness ftw
-map <CR> O<Esc>
 
 "stop it, josh
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
 map <right> <nop>
+
+"language-specific settings
+execute 'silent! source ~/.vim/python.vim'
+
+"project / directory specific settings
+set secure
+set exrc

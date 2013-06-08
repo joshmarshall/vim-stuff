@@ -8,7 +8,7 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                     , Run Swap [] 10
                     , Run Battery ["-t", "<acstatus><timeleft> (<left>%)", "-l", "red", "-h", "blue", "--", "-O", "<fc=green>PW</fc> ", "-o", "", "-m", "blue"] 10
                     , Run Wireless "wlan0" [] 10
-                    , Run Date "%a %b %_d %l:%M" "date" 10
+                    , Run Date "%a %b %_d %k:%M" "date" 10
                     , Run StdinReader
                     ]
        , sepChar = "%"
