@@ -1,3 +1,9 @@
+if hash brew 2>/dev/null; then
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        . $(brew --prefix)/etc/bash_completion
+    fi
+fi
+
 source /usr/local/bin/virtualenvwrapper.sh
 alias nt='clear && python `which nosetests` -x --rednose'
 alias flex='~/bin/flex/bin/mxmlc'
@@ -10,7 +16,7 @@ if [[ $USER == "jmarshall@" ]]; then
 fi;
 if [[ $HOST == josh-* ]] || [[ $HOST == jm-* ]]; then
     # it's one of my systems, so no need to show hostname.
-    HOST="⌨ "
+    HOST="☺ "
 fi;
 export PS1="\[\033[32m\]$USER$HOST\[\033[01;34m\] \W\[\033[31m\]\$(__git_ps1)\[\033[00m\] ⚡\[\033[00m\] "
 
