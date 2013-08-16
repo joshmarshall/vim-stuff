@@ -50,7 +50,6 @@ if !exists("*Flake8()")
         endif
 
         if exists("g:flake8_max_line_length")
-            echom "GOING~~~"
             let s:flake8_max_line_length=" --max-line-length=".g:flake8_max_line_length
         else
             let s:flake8_max_line_length=""

@@ -12,6 +12,9 @@ set background=dark
 highlight ExtraWhitespace ctermbg=DarkGray
 match ExtraWhitespace /\s\+\%#\@<!$/
 match ExtraWhitespace /\s\+$/
+"defaults for unknown files
+set tabstop=4
+set shiftwidth=4
 
 au BufRead,BufNewFile *.erb set filetype=ruby
 au FileType ruby set tabstop=2
@@ -49,6 +52,9 @@ au FileType markdown set nolist
 au FileType markdown set tabstop=4
 au FileType markdown set shiftwidth=4
 
+au FileType bash set tabstop=4
+au FileType bash set shiftwidth=4
+
 au BufNewFile,BufRead *.cpp,*.c,*.h,*.hpp set nowrap
 au BufNewFile,BufRead *.cpp,*.c,*.h,*.hpp set colorcolumn=120
 au BufNewFile,BufRead *.cpp,*.c,*.h,*.hpp set tabstop=4
@@ -73,6 +79,14 @@ au BufRead,BufNewFile *.pago set filetype=pago
 
 "opengl stuff
 au BufRead,BufNewFile *.frag,*.vert,*.glsl setf glsl
+
+"json settings
+au BufRead,BufNewFile *.json set filetype=json
+au FileType json set tabstop=2
+au FileType json set shiftwidth=2
+
+"brightscript / roku stuff
+au BufRead,BufNewFile *.brs set filetype=brs
 
 highlight SpellBad ctermbg=DarkGray
 
