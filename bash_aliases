@@ -30,25 +30,9 @@ if [[ $HOST == josh-* ]] || [[ $HOST == jm-* ]]; then
 fi;
 export PS1="\[\033[32m\]$USER$HOST\[\033[01;34m\] \W\[\033[31m\]\$(__git_ps1)\[\033[00m\] ✪ \[\033[00m\]"
 
-
-
 # virtualenv stuff...
 if [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
     source /usr/local/bin/virtualenvwrapper.sh
-    check_virtualenv() {
-        if [ -e .venv ]; then
-            workon `cat .venv`
-        elif [ "`echo $VIRTUAL_ENV`" != "" ]; then
-            deactivate
-        fi
-    }
-
-    venv_cd() {
-        builtin cd "$@" && check_virtualenv
-    }
-
-    alias cd=venv_cd
-    check_virtualenv
 fi
 
 
@@ -61,3 +45,30 @@ fi
 if [ -a ~/.bash_local ]; then
     source ~/.bash_local
 fi
+
+check_virtualenv() {
+    if [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
+        if [ -e .venv ]; then
+            workon `cat .venv`
+        elif [ "`echo $VIRTUAL_ENV`" != "" ]; then
+            deactivate
+        fi
+    fi
+}
+
+check_variables() {
+    local env="$PWD/.env"
+    if [ -e "$env" ]; then
+        # TODO: make this smarter... unset, etc.
+        source "$env"
+        export CURRENT_ENV="$env"
+    fi
+}
+
+check_cd() {
+    builtin cd "$@" && check_variables && check_virtualenv
+}
+
+alias cd=check_cd
+check_variables
+check_virtualenv

@@ -7,12 +7,18 @@ set autoindent
 set showmatch
 set ruler
 set hlsearch
+set incsearch
 set background=dark
 "colorscheme zenburn
-highlight ExtraWhitespace ctermbg=DarkGray
-match ExtraWhitespace /\s\+\%#\@<!$/
-match ExtraWhitespace /\s\+$/
 "defaults for unknown files
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
 set tabstop=4
 set shiftwidth=4
 
