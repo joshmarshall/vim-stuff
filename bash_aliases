@@ -16,6 +16,9 @@ if [ -d ~/bin ]; then
     export PATH="${PATH}:~/bin"
 fi
 
+if [ -d /usr/local/share/npm/bin ]; then
+    export PATH="${PATH}:/usr/local/share/npm/bin"
+fi
 
 # terminal prompt stuff
 USER="$(whoami)@"
