@@ -57,6 +57,7 @@ if [[ $distro == "Ubuntu" ]]; then
     run sudo apt-get update
     run sudo apt-get install -y build-essential python-setuptools
     run sudo apt-get install -y xmonad xmobar suckless-tools gmrun xloadimage > /dev/null
+    run sudo apt-get install -y ttf-droid
     run sudo easy_install pip
   fi
 fi
