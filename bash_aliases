@@ -7,6 +7,7 @@ fi
 alias nt='clear && python `which nosetests` -x --rednose'
 alias flex='~/bin/flex/bin/mxmlc'
 export MXMLC_PATH='~/bin/flex/bin/mxmlc'
+export GOPATH=$HOME/libs/go
 
 if [ -d ~/.cabal/bin ]; then
     export PATH="${PATH}:~/.cabal/bin"
