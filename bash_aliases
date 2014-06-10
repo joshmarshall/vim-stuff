@@ -1,3 +1,7 @@
+if [[ ! -z $VIRTUAL_ENV ]]; then
+  deactivate
+fi
+
 if hash brew 2>/dev/null; then
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
         . $(brew --prefix)/etc/bash_completion
@@ -47,11 +51,12 @@ if [ -a ~/.bash_local ]; then
 fi
 
 check_virtualenv() {
+    if [[ ! -z $VIRTUAL_ENV ]]; then
+      deactivate
+    fi
     if [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
         if [ -e .venv ]; then
             workon `cat .venv`
-        elif [ "`echo $VIRTUAL_ENV`" != "" ]; then
-            deactivate
         fi
     fi
 }

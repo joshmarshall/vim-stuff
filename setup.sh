@@ -46,6 +46,7 @@ link "$DIR/bash_aliases" ~/.bash_aliases
 link "$DIR/xmonad" ~/.xmonad
 link "$DIR/xmobarrc" ~/.xmobarrc
 link "$DIR/background.jpg" ~/.background.jpg
+link "$DIR/tmux.conf" ~/.tmux.conf
 
 distroid=`lsb_release -i`
 distro=`expr substr "$distroid" 17 6`
