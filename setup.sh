@@ -1,4 +1,4 @@
-DIR=`pwd`
+R=`pwd`
 
 sudo echo "Running installation..."
 
@@ -43,15 +43,19 @@ link "$DIR/vimrc" ~/.vimrc
 link "$DIR/vimrc" ~/.vimrc
 link "$DIR/vim" ~/.vim
 link "$DIR/bash_aliases" ~/.bash_aliases
-link "$DIR/xmonad" ~/.xmonad
-link "$DIR/xmobarrc" ~/.xmobarrc
-link "$DIR/background.jpg" ~/.background.jpg
 link "$DIR/tmux.conf" ~/.tmux.conf
+
+mkdir -p $HOME/bin
+mkdir -p $HOME/libs/go
 
 distroid=`lsb_release -i`
 distro=`expr substr "$distroid" 17 6`
 
 if [[ $distro == "Ubuntu" ]]; then
+  link "$DIR/xmonad" ~/.xmonad
+  link "$DIR/xmobarrc" ~/.xmobarrc
+  link "$DIR/background.jpg" ~/.background.jpg
+
   confirm "Install system packages? (default YES): " "YES"
   if [[ $? == 1 ]]; then
     echo "Installing Ubuntu packages..."

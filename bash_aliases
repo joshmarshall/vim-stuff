@@ -8,9 +8,9 @@ if hash brew 2>/dev/null; then
     fi
 fi
 
-alias nt='clear && python `which nosetests` -x --rednose'
 alias flex='~/bin/flex/bin/mxmlc'
 export MXMLC_PATH='~/bin/flex/bin/mxmlc'
+export GOPATH=$HOME/libs/go
 
 if [ -d ~/.cabal/bin ]; then
     export PATH="${PATH}:~/.cabal/bin"
@@ -20,8 +20,12 @@ if [ -d ~/bin ]; then
     export PATH="${PATH}:~/bin"
 fi
 
+if [ -d /usr/local/share/npm/bin ]; then
+    export PATH="${PATH}:/usr/local/share/npm/bin"
+fi
 
 # terminal prompt stuff
+export GIT_PS1_SHOWUPSTREAM="auto"
 USER="$(whoami)@"
 HOST="$(hostname)"
 if [[ $USER == "jmarshall@" ]]; then
