@@ -45,6 +45,10 @@ if [ -a ~/.bash_secure ]; then
     source ~/.bash_secure
 fi
 
+if [ -a ~/.bash_platform ]; then
+    source ~/.bash_platform
+fi
+
 # machine-specific setup (xrandr, etc.)
 if [ -a ~/.bash_local ]; then
     source ~/.bash_local
