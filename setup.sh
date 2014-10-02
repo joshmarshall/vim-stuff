@@ -40,9 +40,9 @@ function confirm {
 }
 
 link "$DIR/vimrc" ~/.vimrc
-link "$DIR/vimrc" ~/.vimrc
 link "$DIR/vim" ~/.vim
 link "$DIR/bash_aliases" ~/.bash_aliases
+link "$DIR/ghci" ~/.ghci
 link "$DIR/tmux.conf" ~/.tmux.conf
 
 mkdir -p $HOME/bin

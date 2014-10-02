@@ -47,6 +47,7 @@ function confirm {
 link "$DIR/vimrc" ~/.vimrc
 link "$DIR/vim" ~/.vim
 link "$DIR/bash_aliases" ~/.bash_profile
+link "$DIR/ghci" ~/.ghci
 
 touch ~/.bash_secure
 chmod 700 ~/.bash_secure
