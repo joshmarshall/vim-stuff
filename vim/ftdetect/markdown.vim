@@ -1,7 +1,11 @@
 " Markdown
-autocmd BufNewFile,BufRead *.{md,mkd,mkdn,mark*} set filetype=markdown
+autocmd BufNewFile,BufRead *.markdown,*.md,*.mdown,*.mkd,*.mkdn
+      \ if &ft =~# '^\%(conf\|modula2\)$' |
+      \   set ft=markdown |
+      \ else |
+      \   setf markdown |
+      \ endif
 
-au FileType markdown set wrap
 au FileType markdown set linebreak
 au FileType markdown set nolist
 au FileType markdown set tabstop=4

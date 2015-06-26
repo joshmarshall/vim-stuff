@@ -40,6 +40,10 @@ au BufRead,BufNewFile *.json set filetype=json
 au FileType json set tabstop=2
 au FileType json set shiftwidth=2
 
+"java settings
+au FileType java set tabstop=4
+au FileType java set shiftwidth=4
+
 highlight SpellBad ctermbg=DarkGray
 
 "stop it, josh
