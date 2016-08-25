@@ -42,10 +42,14 @@ if [[ $USER == "jmarshall@" ]]; then
     # don't need to say who it is if its me. :)
     USER=""
 fi;
-if [[ $HOST == josh-* ]] || [[ $HOST == jm-* ]]; then
+
+shopt -s nocasematch
+if [[ $HOST == josh-* ]] || [[ $HOST == jm-* ]] || [[ $HOST == jmarshall-* ]]; then
     # it's one of my systems, so no need to show hostname.
     HOST="[] "
 fi;
+shopt -u nocasematch
+
 export GIT_PS1_SHOWDIRTYSTATE=1
 export PS1="\[\033[0;32m\]$USER$HOST\[\033[1;34m\]\W\[\033[0;31m\]\$(__git_ps1)\[\033[0m\] > \[\033[0m\]"
 
