@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 
+
+from __future__ import print_function
+
 import argparse
 import os
 import os.path
 import re
-import subprocess
 import sys
+
+import requests
 
 USERNAME = os.environ["BINTRAY_USERNAME"]
 API_KEY = os.environ["BINTRAY_API_KEY"]
@@ -54,9 +58,12 @@ def main():
         # trying to determine name and version from
         base, _ = os.path.splitext(basename)
         base, arch = base.rsplit("_", 1)
+        arch = args.architecture or arch
         if arch not in ALLOWED_ARCH:
             raise ValueError("Architecture {0} not discoverable".format(arch))
         name, version = base.split("_", 1)
+        name = args.name or name
+        version = args.version or version
         if not VERSION_RE.match(version):
             raise ValueError("Version not discoverable ({0})".format(version))
         args.version = version
@@ -73,17 +80,25 @@ def main():
             print("\nNot submitting package.")
             return
 
-    print("Submitting package.")
-    command = [
-        "curl", "-s", "-T", args.package, "-u",
-        "{0}:{1}".format(USERNAME, API_KEY), url,
-        "-H", "X-Bintray-Debian-Distribution: {0.distribution}".format(args),
-        "-H", "X-Bintray-Debian-Architecture: {0.architecture}".format(args),
-        "-H", "X-Bintray-Debian-Component: {0.component}".format(args)
-    ]
+    print("Submitting package...")
 
-    result = subprocess.check_output(command)
-    print result
+    parameters = {"publish": "1"}
+    headers = {
+        "X-Bintray-Debian-Distribution": args.distribution,
+        "X-Bintray-Debian-Architecture": args.architecture,
+        "X-Bintray-Debian-Component": args.component
+    }
+    with open(args.package, "rb") as package_fp:
+        response = requests.put(
+            url, auth=(USERNAME, API_KEY), params=parameters,
+            headers=headers, data=package_fp)
+
+    if response.status_code != 201:
+        raise Exception(
+            "Failed to submit package: {0}\n{1}".format(
+                response.status_code, response.text))
+
+    print("Submitted successfully.")
 
 
 if __name__ == "__main__":

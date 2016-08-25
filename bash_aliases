@@ -8,9 +8,15 @@ if hash brew 2>/dev/null; then
     fi
 fi
 
+# don't like __pycache__ files all over the place
+export PYTHONDONTWRITEBYTECODE=nope
+
 alias flex='~/bin/flex/bin/mxmlc'
 export MXMLC_PATH='~/bin/flex/bin/mxmlc'
 export GOPATH=$HOME/libs/go
+
+alias ansible='~/bin/venvs/ansible/bin/ansible'
+alias ansible-playbook='~/bin/venvs/ansible/bin/ansible-playbook'
 
 if [ -d ~/.cabal/bin ]; then
     export PATH="${PATH}:~/.cabal/bin"
@@ -18,6 +24,10 @@ fi
 
 if [ -d ~/bin ]; then
     export PATH="${PATH}:~/bin"
+fi
+
+if [ -d ~/.racket ]; then
+    export PATH="${PATH}:~/.racket/bin"
 fi
 
 if [ -d /usr/local/share/npm/bin ]; then
@@ -34,9 +44,10 @@ if [[ $USER == "jmarshall@" ]]; then
 fi;
 if [[ $HOST == josh-* ]] || [[ $HOST == jm-* ]]; then
     # it's one of my systems, so no need to show hostname.
-    HOST="⌨ "
+    HOST="[] "
 fi;
-export PS1="\[\033[32m\]$USER$HOST\[\033[01;34m\] \W\[\033[31m\]\$(__git_ps1)\[\033[00m\] ✪ \[\033[00m\]"
+export GIT_PS1_SHOWDIRTYSTATE=1
+export PS1="\[\033[0;32m\]$USER$HOST\[\033[1;34m\]\W\[\033[0;31m\]\$(__git_ps1)\[\033[0m\] > \[\033[0m\]"
 
 # virtualenv stuff...
 if [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
@@ -85,3 +96,6 @@ check_cd() {
 alias cd=check_cd
 check_variables
 check_virtualenv
+
+# Because Node / NPM...
+export PATH="./node_modules/.bin:${PATH}"
