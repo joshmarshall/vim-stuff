@@ -89,8 +89,18 @@ check_variables() {
     fi
 }
 
+check_opam() {
+    if [ -e ~/.opam ]; then
+        if [ -e .opamenv ]; then
+            eval `opam config env --switch "$(cat .opamenv)"`
+        else
+            eval $(opam config env --switch system)
+        fi
+    fi
+}
+
 check_cd() {
-    builtin cd "$@" && check_variables && check_virtualenv
+    builtin cd "$@" && check_variables && check_virtualenv && check_opam
 }
 
 alias cd=check_cd
@@ -99,3 +109,14 @@ check_virtualenv
 
 # Because Node / NPM...
 export PATH="./node_modules/.bin:${PATH}"
+
+###-appbuilder-completion-start-###
+if [ -f /Users/jmarshall/.appbuilderrc ]; then 
+    source /Users/jmarshall/.appbuilderrc 
+fi
+###-appbuilder-completion-end-###
+
+
+if [ which -a docker ]; then
+    alias docker-ps="docker ps -q | xargs docker inspect --format '{{ .Config.Image }} - {{ .Name }} - {{ .NetworkSettings.IPAddress }}'"
+fi
