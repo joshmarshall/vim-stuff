@@ -1,4 +1,4 @@
-R=`pwd`
+DIR=`pwd`
 
 sudo echo "Running installation..."
 
