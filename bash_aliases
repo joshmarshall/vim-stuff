@@ -34,6 +34,12 @@ if [ -d /usr/local/share/npm/bin ]; then
     export PATH="${PATH}:/usr/local/share/npm/bin"
 fi
 
+if [ -d "$HOME/.nvm" ]; then
+    export NVM_DIR="$HOME/.nvm"
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
 # terminal prompt stuff
 export GIT_PS1_SHOWUPSTREAM="auto"
 USER="$(whoami)@"
