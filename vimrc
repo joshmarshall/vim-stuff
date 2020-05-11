@@ -21,28 +21,14 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 " misc file types
-au BufNewFile,BufRead *.ejs,*.htm,*.html set filetype=html
-au BufNewFile,BufRead *.less set filetype=less
 au BufNewFile,BufRead *.j set filetype=objj
 au BufNewFile,BufRead *.dart set filetype=dart
-
-au BufRead,BufNewFile *.coffee set filetype=coffee
-autocmd FileType coffee compiler espresso
 
 "pago screenplay format
 au BufRead,BufNewFile *.pago set filetype=pago
 
 "opengl stuff
 au BufRead,BufNewFile *.frag,*.vert,*.glsl setf glsl
-
-"json settings
-au BufRead,BufNewFile *.json set filetype=json
-au FileType json set tabstop=2
-au FileType json set shiftwidth=2
-
-"java settings
-au FileType java set tabstop=4
-au FileType java set shiftwidth=4
 
 highlight SpellBad ctermbg=DarkGray
 
@@ -55,3 +41,9 @@ map <right> <nop>
 "project / directory specific settings
 set secure
 set exrc
+
+"for force.com stuff
+let g:apex_backup_folder="/tmp/apex-backup"
+let g:apex_temp_folder="/tmp/apex-temp"
+let g:apex_properties_folder="/tmp/apex-properties"
+let g:apex_tooling_force_dot_com_path="~/bin/tooling-force.com.jar"

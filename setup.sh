@@ -60,17 +60,19 @@ if [[ $distro == "Ubuntu" ]]; then
   if [[ $? == 1 ]]; then
     echo "Installing Ubuntu packages..."
     run sudo apt-get update
-    run sudo apt-get install -y build-essential python-setuptools
-    run sudo apt-get install -y xmonad xmobar suckless-tools gmrun xloadimage > /dev/null
-    run sudo apt-get install -y ttf-droid
-    run sudo easy_install pip
+    run sudo apt-get install -y build-essential python-setuptools python3 vim
+    run sudo apt-get install -y xmonad xmobar suckless-tools gmrun xloadimage
   fi
 fi
 
 touch ~/.bash_secure
 chmod 700 ~/.bash_secure
 
+CURRENT_DIR=$(pwd)
+
 confirm "Setup terminal colors? (default YES): " "YES"
 if [[ $? == 1 ]]; then
-  ./gnome-terminal-zenburn.sh
+  wget https://github.com/gnumoksha/gnome-terminal-colors/archive/master.zip -O /tmp/gnome-terminal-colors.zip
+  cd /tmp && unzip /tmp/gnome-terminal-colors.zip && cd /tmp/gnome-terminal-colors-master && ./install.sh
+  cd $CURRENT_DIR
 fi
