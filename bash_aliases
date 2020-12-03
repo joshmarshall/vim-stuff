@@ -16,12 +16,16 @@ set bell-style visible
 # don't like __pycache__ files all over the place
 export PYTHONDONTWRITEBYTECODE=nope
 
-alias flex='$HOME/bin/flex/bin/mxmlc'
-export MXMLC_PATH='$HOME/bin/flex/bin/mxmlc'
-export GOPATH=$HOME/libs/go
 
-alias ansible='$HOME/bin/venvs/ansible/bin/ansible'
-alias ansible-playbook='$HOME/bin/venvs/ansible/bin/ansible-playbook'
+if [ -d $HOME/bin/flex/bin ]; then
+    alias flex='$HOME/bin/flex/bin/mxmlc'
+    export MXMLC_PATH='$HOME/bin/flex/bin/mxmlc'
+fi
+
+if [ -d $HOME/libs/go ]; then
+    export GOPATH=$HOME/libs/go
+    export PATH="${PATH}:~/libs/go/bin"
+fi
 
 if [ -d $HOME/bin ]; then
     export PATH="${PATH}:$HOME/bin"
@@ -105,12 +109,16 @@ if [ -a $HOME/.bash_platform ]; then
 fi
 
 if [ -d $HOME/.pyenv/bin ]; then
-    export PATH="${PATH}:$HOME/.pyenv/bin"
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init -)"
-fi
+    if command -v pyenv 1>/dev/null 2>&1; then
+      eval "$(pyenv init -)"
+    fi
 
-if [ -d $HOME/.pyenv/plugins/pyenv-virtualenv/shims ]; then
-    eval "$(pyenv virtualenv-init -)"
+    if [ -d $HOME/.pyenv/plugins/pyenv-virtualenv/shims ]; then
+        eval "$(pyenv virtualenv-init -)"
+    fi
 fi
 
 
