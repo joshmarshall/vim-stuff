@@ -47,6 +47,10 @@ if [ -f $HOME/.cargo/env ]; then
     source $HOME/.cargo/env
 fi
 
+if [ -d "$HOME/.cargo/bin" ] ; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
 if [ -d $HOME/bin/swift/usr/bin ]; then
     export PATH="${PATH}:$HOME/bin/swift/usr/bin"
 fi
@@ -67,6 +71,10 @@ if [ -d "$HOME/.nvm" ]; then
     export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+if [ -d "$HOME/.yarn/bin" ]; then
+    export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 fi
 
 if [ -d $HOME/Android/Sdk ]; then
@@ -111,7 +119,6 @@ fi
 if [ -d $HOME/.pyenv/bin ]; then
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init -)"
     if command -v pyenv 1>/dev/null 2>&1; then
       eval "$(pyenv init -)"
     fi
@@ -121,6 +128,15 @@ if [ -d $HOME/.pyenv/bin ]; then
     fi
 fi
 
+# added by Nix installer
+if [ -e /home/jmarshall/.nix-profile/etc/profile.d/nix.sh ]; then
+    . /home/jmarshall/.nix-profile/etc/profile.d/nix.sh;
+fi
+
+# added by travis gem
+[ -f /home/jmarshall/.travis/travis.sh ] && source /home/jmarshall/.travis/travis.sh
+
+set +x
 
 # Because Node / NPM...
 export PATH="./node_modules/.bin:${PATH}"
